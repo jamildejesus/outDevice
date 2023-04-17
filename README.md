@@ -1,1 +1,1 @@
-# outDevice
+# checkoutDevice
