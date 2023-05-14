@@ -2,13 +2,14 @@ import { Component, ViewChild, ElementRef  } from '@angular/core';
 import { IonicModule, ToastController, LoadingController, Platform } from '@ionic/angular';
 import jsQR from 'jsqr';
 import { MyNavigator } from './naviator';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonicModule],
+  imports: [IonicModule, HttpClientModule],
 })
 
 
@@ -28,7 +29,7 @@ export class HomePage {
   constructor(
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
-    private plt: Platform
+    private plt: Platform,
       ) {
  const isInStandaloneMode = () =>
   'standalone' in navigator && (navigator as MyNavigator).standalone;
@@ -131,8 +132,20 @@ async scan() {
   } else {
     requestAnimationFrame(this.scan.bind(this));
   }
+//this.onSubmit();
 }
 
-
-
+  /*onSubmit() {
+    this.api.login('admin@example.com', 'admin').subscribe(
+      response => {
+        console.log('Logged in successfully', response);
+        // Hacer algo después de iniciar sesión, como navegar a otra página
+      },
+      error => {
+        console.error('Error during login', error);
+        // Manejar el error de inicio de sesión, por ejemplo, mostrar un mensaje de error en la pantalla
+      }
+    );
+  }
+*/
 }
