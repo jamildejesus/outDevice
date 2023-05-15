@@ -10,6 +10,7 @@ import { MyNavigator } from "./naviator";
 import { HttpClientModule } from "@angular/common/http";
 import { CookieService } from "ngx-cookie-service";
 import { Router } from "@angular/router";
+import { DetailService } from "../detail.service";
 import axios from "axios";
 import { environment } from "src/environments/environment.dev";
 
@@ -36,7 +37,8 @@ export class HomePage {
     private loadingCtrl: LoadingController,
     private plt: Platform,
     private cookieService: CookieService,
-    private router: Router
+    private router: Router,
+    private detailService: DetailService
   ) {
     const isInStandaloneMode = () =>
       "standalone" in navigator && (navigator as MyNavigator).standalone;
@@ -154,6 +156,13 @@ export class HomePage {
           const response = await axios.get(
             apiURL + "/api/devices/VJLOCF3JYBQD/"
           );
+          this.detailService.serialNumber = response.data["serial_number"];
+          this.detailService.assetTag = response.data["asset_tag"];
+          this.detailService.deviceId = response.data.id;
+          this.detailService.associatedId = response.data["associated_id"];
+          this.detailService.assignedTo = response.data["assigned_to"]
+
+          this.router.navigate(["/detail"]);
           console.log(response);
         }
       } catch (error) {

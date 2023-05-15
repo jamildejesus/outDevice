@@ -10,15 +10,17 @@
       <div class="container">
         <div class="associate-info">
           <h3>Associate information</h3>
-          <p>Jamil Enriquez</p>
-          <p>VJX432JD</p>
+          <p>{{assignedTo}}</p>
+          <p>{{serialNumber}}</p>
         </div>
         <div class="divider"></div>
         <div class="device-info">
           <h3>Device information</h3>
-          <p>VJX432JD432FSA</p>
+          <p>{{assetTag}}</p>
         </div>
-        <button type="submit">Authorize</button>
+        <form (ngSubmit)="ngOnAuthorize()">
+          <button type="submit">Authorize</button>
+        </form>
       </div>
     </ion-toolbar>
   </ion-header> </ion-content
