@@ -148,13 +148,18 @@ export class HomePage {
 
   async onSubmit() {
     const apiURL = environment.apiURL;
-
-    try {
-      const response = await axios.get(apiURL + "/api/devices/VJLOCF3JYBQD/");
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-      alert("Response error");
+    if (this.scanResult) {
+      try {
+        if (this.scanResult) {
+          const response = await axios.get(
+            apiURL + "/api/devices/VJLOCF3JYBQD/"
+          );
+          console.log(response);
+        }
+      } catch (error) {
+        console.log(error);
+        alert("Response error");
+      }
     }
   }
 }
