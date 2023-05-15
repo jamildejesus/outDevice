@@ -1,16 +1,23 @@
-import { TestBed } from '@angular/core/testing';
+import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { environment } from "src/environments/environment.dev";
 
-import { LoginService } from './login.service';
+@Injectable({
+  providedIn: "root",
+})
+export class MyService {
+  constructor(private http: HttpClient) {}
 
-describe('LoginService', () => {
-  let service: LoginService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(LoginService);
-  });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+  getData(): Observable<HttpResponse<any>> {
+    const apiURL = environment.apiURL;
+    return this.http.post<any>(
+      apiURL + "/api/token/",
+      {
+        username: "admin1",
+        password: "admin",
+      },
+      { observe: "response" }
+    );
+  }
+}
