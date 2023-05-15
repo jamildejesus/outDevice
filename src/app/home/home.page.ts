@@ -13,6 +13,7 @@ import { Router } from "@angular/router";
 import { DetailService } from "../detail.service";
 import axios from "axios";
 import { environment } from "src/environments/environment.dev";
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: "app-home",
@@ -150,7 +151,8 @@ export class HomePage {
   }
 
   public onSubmit(id: string): void{
-		this.http.get<any>(`${environment.apiURL}/api/devices/${id}`).subscribe((response)=>{
+        const httpOptions = { headers: new HttpHeaders().append('ngrok-skip-browser-warning', 'true') };
+		this.http.get<any>(`${environment.apiURL}/api/devices/${id}`, httpOptions).subscribe((response)=>{
             console.log(response);
             if (this.scanResult) {
                         this.detailService.serialNumber = response?.serial_number;
