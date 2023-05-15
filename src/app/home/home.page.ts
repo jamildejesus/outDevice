@@ -154,7 +154,7 @@ export class HomePage {
       try {
         if (this.scanResult) {
           const response = await axios.get(
-            apiURL + "/api/devices/VJLOCF3JYBQD/"
+            apiURL + "/api/devices/XXXXXXXXXX/"
           );
           this.detailService.serialNumber = response.data["serial_number"];
           this.detailService.assetTag = response.data["asset_tag"];
