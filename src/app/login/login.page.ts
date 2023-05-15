@@ -38,8 +38,8 @@ export class LoginPage implements OnInit {
 
     try {
       const response = await axios.post(apiURL + "/api/token/", {
-        username: "admin",
-        password: "admin",
+        username: this.username,
+        password: this.password,
       });
 
       if (response.status === 200 && response.data.access) {
