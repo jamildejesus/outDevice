@@ -147,20 +147,23 @@ export class HomePage {
     } else {
       requestAnimationFrame(this.scan.bind(this));
     }
-    this.onSubmit('XXXXXXXXXX');
+    if(this.scanResult.length == 10){
+    this.onSubmit(this.scanResult);
+
+    }
   }
 
   public onSubmit(id: string): void{
-        const httpOptions = { headers: new HttpHeaders().append('ngrok-skip-browser-warning', 'true') };
-		this.http.get<any>(`${environment.apiURL}/api/devices/${id}`, httpOptions).subscribe((response)=>{
-            console.log(response);
+        //const httpOptions = { headers: new HttpHeaders().append('ngrok-skip-browser-warning', '69420') };
+		this.http.get<any>(`${environment.apiURL}/api/devices/${id}`).subscribe((response)=>{
+            //console.log(response);
             if (this.scanResult) {
-                        this.detailService.serialNumber = response?.serial_number;
-                        this.detailService.assetTag = response?.asset_tag;
-                        this.detailService.deviceId = response?.id;
-                        this.detailService.associatedId = response?.associated_id;
-                        this.detailService.assignedTo = response?.assigned_to;
-                        this.router.navigate(["/detail"]);
+                this.detailService.serialNumber = response?.serial_number;
+                this.detailService.assetTag = response?.asset_tag;
+                this.detailService.deviceId = response?.id;
+                this.detailService.associatedId = response?.associated_id;
+                this.detailService.assignedTo = response?.assigned_to;
+                this.router.navigate(["/detail"]);
             }
         });
     }
