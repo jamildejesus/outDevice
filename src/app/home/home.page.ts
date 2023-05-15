@@ -7,7 +7,7 @@ import {
 } from "@ionic/angular";
 import jsQR from "jsqr";
 import { MyNavigator } from "./naviator";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { CookieService } from "ngx-cookie-service";
 import { Router } from "@angular/router";
 import { DetailService } from "../detail.service";
@@ -38,7 +38,8 @@ export class HomePage {
     private plt: Platform,
     private cookieService: CookieService,
     private router: Router,
-    private detailService: DetailService
+    private detailService: DetailService,
+    private http: HttpClient
   ) {
     const isInStandaloneMode = () =>
       "standalone" in navigator && (navigator as MyNavigator).standalone;
@@ -145,10 +146,24 @@ export class HomePage {
     } else {
       requestAnimationFrame(this.scan.bind(this));
     }
-    this.onSubmit();
+    this.onSubmit('XXXXXXXXXX');
   }
 
-  async onSubmit() {
+  public onSubmit(id: string): void{
+		this.http.get<any>(`${environment.apiURL}/api/devices/${id}`).subscribe((response)=>{
+            console.log(response);
+            if (this.scanResult) {
+                        this.detailService.serialNumber = response?.serial_number;
+                        this.detailService.assetTag = response?.asset_tag;
+                        this.detailService.deviceId = response?.id;
+                        this.detailService.associatedId = response?.associated_id;
+                        this.detailService.assignedTo = response?.assigned_to;
+                        this.router.navigate(["/detail"]);
+            }
+        });
+    }
+
+  /*async Submit() {
     const apiURL = environment.apiURL;
     if (this.scanResult) {
       try {
@@ -170,5 +185,5 @@ export class HomePage {
         alert("Response error");
       }
     }
-  }
+  }*/
 }
