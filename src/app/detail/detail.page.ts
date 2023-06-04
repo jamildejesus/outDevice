@@ -44,6 +44,12 @@ export class DetailPage implements OnInit {
         associate: this.associatedId,
       });
 
+      this.detailService.assetTag = "";
+      this.detailService.serialNumber = "";
+      this.detailService.associatedId = "";
+      this.detailService.deviceId = "";
+      this.detailService.assignedTo = "";
+
       const toast = await this.toastCtrl.create({
         message: "Authorized!",
         position: "top",
