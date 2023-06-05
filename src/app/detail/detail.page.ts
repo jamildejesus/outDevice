@@ -43,7 +43,8 @@ export class DetailPage implements OnInit {
         device: this.deviceId,
         associate: this.associatedId,
       });
-
+      this.router.navigate(["/home"]);
+/*
       this.detailService.assetTag = "";
       this.detailService.serialNumber = "";
       this.detailService.associatedId = "";
@@ -65,7 +66,7 @@ export class DetailPage implements OnInit {
       });
       toast.present();
 
-      /*setTimeout(() => {
+      setTimeout(() => {
         this.detailService.assetTag = "";
         this.detailService.serialNumber = "";
         this.detailService.associatedId = "";
@@ -73,7 +74,6 @@ export class DetailPage implements OnInit {
         this.detailService.assignedTo = "";
         this.router.navigate(["/home"]);
       }, 5000);*/
-    this.router.navigate(["/home"];
 
     } catch (error) {
       console.log(error);
