@@ -140,25 +140,25 @@ export class HomePage {
       if (code) {
         this.scanActive = false;
         this.scanResult = code.data;
-        this.showQrToast();
+        //this.showQrToast();
+	      onSubmit(this.scanResult);
       } else {
         if (this.scanActive) {
           requestAnimationFrame(this.scan.bind(this));
         }
       }
-    } else {
-      requestAnimationFrame(this.scan.bind(this));
     }
+/*else {
+      requestAnimationFrame(this.scan.bind(this));
+    }*/
     //if(this.scanResult.length == 10){
-    this.onSubmit(this.scanResult);
+    //this.onSubmit(this.scanResult);
 
     //}
   }
 
   public onSubmit(id: string): void{
-        //const httpOptions = { headers: new HttpHeaders().append('ngrok-skip-browser-warning', '69420') };
-		this.http.get<any>(`${environment.apiURL}/api/devices/${id}`).subscribe((response)=>{
-            //console.log(response);
+	this.http.get<any>(`${environment.apiURL}/api/devices/${id}`).subscribe((response)=>{
             if (this.scanResult) {
                 this.detailService.serialNumber = response?.serial_number;
                 this.detailService.assetTag = response?.asset_tag;
@@ -168,7 +168,6 @@ export class HomePage {
                 this.router.navigate(["/detail"]);
             }
         });
-			this.scanResult = "";
 
     }
 
