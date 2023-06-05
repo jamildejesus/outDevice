@@ -64,7 +64,7 @@ export class DetailPage implements OnInit {
         duration: 5000,
       });
       toast.present();
-      this.router.navigate(["/home"]
+      this.router.navigate(["/home"];
 
       /*setTimeout(() => {
         this.detailService.assetTag = "";
