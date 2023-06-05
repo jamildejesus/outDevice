@@ -58,7 +58,7 @@ export class DetailPage implements OnInit {
           {
             text: "Scan new",
             handler: () => {
-              this.router.navigate(["/home"]);
+              this.router.navigate(["/login"]);
             },
           },
         ],
