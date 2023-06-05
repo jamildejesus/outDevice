@@ -141,7 +141,7 @@ export class HomePage {
         this.scanActive = false;
         this.scanResult = code.data;
         //this.showQrToast();
-	      onSubmit(this.scanResult);
+	      this.onSubmit(this.scanResult);
       } else {
         if (this.scanActive) {
           requestAnimationFrame(this.scan.bind(this));
