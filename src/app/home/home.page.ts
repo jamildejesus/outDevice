@@ -166,32 +166,11 @@ export class HomePage {
                 this.detailService.deviceId = response?.id;
                 this.detailService.associatedId = response?.associated_id;
                 this.detailService.assignedTo = response?.assigned_to;
+		this.scanResult = "";
                 this.router.navigate(["/detail"]);
             }
         });
     }
 
-  /*async Submit() {
-    const apiURL = environment.apiURL;
-    if (this.scanResult) {
-      try {
-        if (this.scanResult) {
-          const response = await axios.get(
-            apiURL + "/api/devices/XXXXXXXXXX/"
-          );
-          this.detailService.serialNumber = response.data["serial_number"];
-          this.detailService.assetTag = response.data["asset_tag"];
-          this.detailService.deviceId = response.data.id;
-          this.detailService.associatedId = response.data["associated_id"];
-          this.detailService.assignedTo = response.data["assigned_to"]
 
-          this.router.navigate(["/detail"]);
-          console.log(response);
-        }
-      } catch (error) {
-        console.log(error);
-        alert("Response error");
-      }
-    }
-  }*/
 }
