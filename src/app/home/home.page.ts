@@ -51,10 +51,10 @@ export class HomePage {
   }
 
   ngOnInit() {
-    const token = this.cookieService.get("token");
+    /*const token = this.cookieService.get("token");
     if (!token) {
       this.router.navigate(["/login"]);
-    }
+    }*/
   }
 
   ngAfterViewInit() {
