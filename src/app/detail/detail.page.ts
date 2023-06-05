@@ -64,7 +64,6 @@ export class DetailPage implements OnInit {
         duration: 5000,
       });
       toast.present();
-      this.router.navigate(["/home"];
 
       /*setTimeout(() => {
         this.detailService.assetTag = "";
@@ -74,6 +73,8 @@ export class DetailPage implements OnInit {
         this.detailService.assignedTo = "";
         this.router.navigate(["/home"]);
       }, 5000);*/
+    this.router.navigate(["/home"];
+
     } catch (error) {
       console.log(error);
     }
