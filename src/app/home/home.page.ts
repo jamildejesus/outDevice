@@ -148,10 +148,10 @@ export class HomePage {
     } else {
       requestAnimationFrame(this.scan.bind(this));
     }
-    if(this.scanResult.length == 10){
+    /*if(this.scanResult.length == 10){
     this.onSubmit(this.scanResult);
 
-    }
+    /*}
   }
 
   public onSubmit(id: string): void{
