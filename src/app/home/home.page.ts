@@ -55,8 +55,7 @@ export class HomePage {
     if (!token) {
       this.router.navigate(["/login"]);
     }*/
-	  this.stopScan();
-	  this.reset();
+
 	  
   }
 
@@ -166,10 +165,11 @@ export class HomePage {
                 this.detailService.deviceId = response?.id;
                 this.detailService.associatedId = response?.associated_id;
                 this.detailService.assignedTo = response?.assigned_to;
-		this.scanResult = "";
                 this.router.navigate(["/detail"]);
             }
         });
+			this.scanResult = "";
+
     }
 
 
