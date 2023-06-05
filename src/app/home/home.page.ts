@@ -55,7 +55,9 @@ export class HomePage {
     if (!token) {
       this.router.navigate(["/login"]);
     }*/
+	  this.stopScan();
 	  this.reset();
+	  
   }
 
   ngAfterViewInit() {
