@@ -13,7 +13,7 @@ import { Router } from "@angular/router";
 import { DetailService } from "../detail.service";
 import axios from "axios";
 import { environment } from "src/environments/environment.dev";
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from "@angular/common/http";
 
 @Component({
   selector: "app-home",
@@ -51,12 +51,10 @@ export class HomePage {
   }
 
   ngOnInit() {
-    /*const token = this.cookieService.get("token");
+    const token = this.cookieService.get("token");
     if (!token) {
       this.router.navigate(["/login"]);
-    }*/
-
-	  
+    }
   }
 
   ngAfterViewInit() {
@@ -141,14 +139,14 @@ export class HomePage {
         this.scanActive = false;
         this.scanResult = code.data;
         //this.showQrToast();
-	      this.onSubmit(this.scanResult);
+        this.onSubmit(this.scanResult);
       } else {
         if (this.scanActive) {
           requestAnimationFrame(this.scan.bind(this));
         }
       }
     }
-/*else {
+    /*else {
       requestAnimationFrame(this.scan.bind(this));
     }*/
     //if(this.scanResult.length == 10){
@@ -157,19 +155,18 @@ export class HomePage {
     //}
   }
 
-  public onSubmit(id: string): void{
-	this.http.get<any>(`${environment.apiURL}/api/devices/${id}`).subscribe((response)=>{
-            if (this.scanResult) {
-                this.detailService.serialNumber = response?.serial_number;
-                this.detailService.assetTag = response?.asset_tag;
-                this.detailService.deviceId = response?.id;
-                this.detailService.associatedId = response?.associated_id;
-                this.detailService.assignedTo = response?.assigned_to;
-                this.router.navigate(["/detail"]);
-            }
-        });
-
-    }
-
-
+  public onSubmit(id: string): void {
+    this.http
+      .get<any>(`${environment.apiURL}/api/devices/${id}`)
+      .subscribe((response) => {
+        if (this.scanResult) {
+          this.detailService.serialNumber = response?.serial_number;
+          this.detailService.assetTag = response?.asset_tag;
+          this.detailService.deviceId = response?.id;
+          this.detailService.associatedId = response?.associated_id;
+          this.detailService.assignedTo = response?.assigned_to;
+          this.router.navigate(["/detail"]);
+        }
+      });
+  }
 }
