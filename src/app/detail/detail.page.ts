@@ -65,14 +65,14 @@ export class DetailPage implements OnInit {
       });
       toast.present();
 
-      setTimeout(() => {
+      /*setTimeout(() => {
         this.detailService.assetTag = "";
         this.detailService.serialNumber = "";
         this.detailService.associatedId = "";
         this.detailService.deviceId = "";
         this.detailService.assignedTo = "";
         this.router.navigate(["/home"]);
-      }, 5000);
+      }, 5000);*/
     } catch (error) {
       console.log(error);
     }
